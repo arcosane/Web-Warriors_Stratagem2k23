@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/loginreg.css">
+    <title>Photo</title>
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+            <font face="Roboto"><h2>Upload your Photo</h2></font>
+            <input type="file" id="file-input" accept="image/*">
+            <button id="upload">Upload</button>
+            <a href="/info" >Back</a>
+        </div>
+    </div>
+</body>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+    import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC9YaCgvrGjv7qOLXDDzUg86G-PRcAXZYU",
+      authDomain: "gdah-69ae9.firebaseapp.com",
+      projectId: "gdah-69ae9",
+      storageBucket: "gdah-69ae9.appspot.com",
+      messagingSenderId: "842147212860",
+      appId: "1:842147212860:web:db622f9a78f3d37344dd39",
+      measurementId: "G-W309KL9EKJ"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app); 
+    
+    var img_counter = 1;
+
+    document.getElementById('upload').addEventListener("click", function () {
+        const storage = getStorage();
+        const storageRef = ref(storage, 'images/image'+img_counter+'.png');
+        const fileInput = document.getElementById('file-input');
+        const file = fileInput.files[0];
+        uploadBytes(storageRef, file).then((snapshot) => {
+            alert('Uploaded image.png!');
+            img_counter += 1;
+        });
+    });
+
+    
+
+  </script>  
+</html>

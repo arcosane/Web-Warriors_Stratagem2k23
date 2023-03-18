@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/loginreg.css">
+    <title>info form</title>
+</head>
+<body>
+    <div class="login-page">
+        <form>
+        <div class="form">
+            <font face="Roboto"><h2>Patient Form</h2></font>
+            <input type="text" id="name" placeholder="name" required/>
+            <input type="number" min="0" id="age" placeholder="age" required/>
+            <input type="number" min="0" id ="height" placeholder="height" required/>
+            <input type="number" id ="weight" placeholder="weight" required/>
+            <input type="text" id ="sex" placeholder="sex" required/>
+            <input type="tel" id="phone" placeholder="contact" required />
+            <textarea type="text" id ="address" placeholder="address" required></textarea>
+            <p class="message"><a href="/facial_input">Submit your facial input</a></p><br>
+            <button type="submit" id="sub">submit</button>
+        </div>
+        </form>
+      </div>
+</body>
+<script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+    import { getDatabase , ref , get , update , remove , child , set } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC9YaCgvrGjv7qOLXDDzUg86G-PRcAXZYU",
+      authDomain: "gdah-69ae9.firebaseapp.com",
+      databaseURL: "https://gdah-69ae9-default-rtdb.firebaseio.com",
+      projectId: "gdah-69ae9",
+      storageBucket: "gdah-69ae9.appspot.com",
+      messagingSenderId: "842147212860",
+      appId: "1:842147212860:web:db622f9a78f3d37344dd39",
+      measurementId: "G-W309KL9EKJ"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    
+    document.getElementById('sub').addEventListener("click", function() {
+        function writeUserData(name,age,height,weight,address,contact,sex) {
+        const db = getDatabase();
+        set(ref(db, 'users/' + name), {
+            username: name,
+            age : age,
+            height : height,
+            weight : weight,
+            address : address,
+            contact : contact,
+            sex : sex
+            });
+        }
+
+        var name =  document.getElementById("name").value;
+        var age =  document.getElementById("age").value;
+        var height =  document.getElementById("height").value;
+        var weight =  document.getElementById("weight").value;
+        var address =  document.getElementById("address").value;
+        var contact =  document.getElementById("phone").value;
+        var sex =  document.getElementById("sex").value;
+
+        alert("data registered!");
+        writeUserData(name,age,height,weight,address,contact,sex);
+        window.location="/dashboard"
+
+        
+         
+
+    });
+</script>
+</html>

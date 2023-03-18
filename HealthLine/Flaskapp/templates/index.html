@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/loginreg.css">
+    <title>HealthLine</title>
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+            <font face="Roboto"><h2>WELCOME TO HEALTHLINE</h2></font>
+            <button id="1" onclick="login()">LOGIN</button><br><br>
+            <button id="2" onclick="register()">REGISTER</button>
+        </div>
+    </div>
+</body>
+<script>
+    function login(){
+        window.location="/login"
+    }
+    function register(){
+        window.location="/register"
+    }
+</script>
+</html>

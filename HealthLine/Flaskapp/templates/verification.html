@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload photo</title>
+</head>
+<body>
+    <h1>Verify Patient Through Face Recognition</h1>
+    <form action="/verify" method="post">
+        <input type="text" name="p_name" id="p_name" placeholder="Enter your name">
+        <input type="text" name="p_id" id="p_id" placeholder="Enter patient ID">
+        <button type="submit">Verify Patient</button>
+    </form>
+
+    <div>
+        <h3>
+            Result is :
+        </h3>
+        {%if status%}
+        <h4>{{status}}</h4>
+        {%endif%}
+    </div>
+</body>
+</html>
